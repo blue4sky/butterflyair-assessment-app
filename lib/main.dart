@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PMChartWidget(exampleData),
+                    builder: (context) => PMChartWidget(),
                   ),
                 );
               },
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NO2ChartWidget(exampleData),
+                    builder: (context) => NO2ChartWidget(),
                   ),
                 );
               },

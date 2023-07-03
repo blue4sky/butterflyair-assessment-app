@@ -1,11 +1,30 @@
+import 'package:butterflyair_assessment_app/data/api_call.dart';
+import 'package:butterflyair_assessment_app/data/api_data.dart';
 import 'package:butterflyair_assessment_app/example_data.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class PMChartWidget extends StatelessWidget {
-  final List<ExampleData> points;
+class PMChartWidget extends StatefulWidget {
 
-  const PMChartWidget(this.points, {Key? key}) : super(key: key);
+  const PMChartWidget({super.key});
+
+  @override
+  State<PMChartWidget> createState() => _PMChartWidgetState();
+}
+
+class _PMChartWidgetState extends State<PMChartWidget> {
+  late List<ApiData>? pmData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    pmData = await fetchPMData();
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,31 +34,36 @@ class PMChartWidget extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('PM2.5 Chart'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AspectRatio(
-              aspectRatio: 2,
-              child: LineChart(
-                LineChartData(
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: exampleData
-                          .map((point) => FlSpot(point.x, point.y))
-                          .toList(),
-                      isCurved: false,
-                      // dotData: FlDotData(
-                      //   show: false,
-                      // ),
-                    ),
-                  ],
-                ),
-              ),
+      body: pmData == null || pmData == []
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: pmData!.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(pmData![index].siteCode),
+                          Text(pmData![index].dateTime),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(pmData![index].durationNS.toString()),
+                          Text(pmData![index].scaledValue.toString()),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          ],
-        ),
-      ),
     );
   }
 }
