@@ -1,3 +1,6 @@
+import 'package:butterflyair_assessment_app/no2_chart.dart';
+import 'package:butterflyair_assessment_app/pm2.5_chart.dart';
+import 'package:butterflyair_assessment_app/example_data.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Butterfly Air Assessment App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Butterfly Air Assessment App'),
@@ -38,12 +41,56 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Hello World',
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PMChartWidget(exampleData),
+                  ),
+                );
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                disabledForegroundColor: Colors.grey,
+                textStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+                shape: const BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+              child: const Text('PM2.5 Chart'),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NO2ChartWidget(exampleData),
+                  ),
+                );
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                disabledForegroundColor: Colors.grey,
+                textStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+                shape: const BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+              child: const Text('NO2 Chart'),
             ),
           ],
         ),
