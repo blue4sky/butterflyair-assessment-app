@@ -1,3 +1,5 @@
+import 'package:butterflyair_assessment_app/data/api_call.dart';
+import 'package:butterflyair_assessment_app/data/api_data.dart';
 import 'package:butterflyair_assessment_app/screens/pm2.5_screen/pm2.5_monthly_screen.dart';
 import 'package:butterflyair_assessment_app/screens/pm2.5_screen/pm2.5_weekly_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +12,31 @@ class PMChartWidget extends StatefulWidget {
 }
 
 class _PMChartWidgetState extends State<PMChartWidget> {
+  // For BottomNavigationBar
   int _selectedIndex = 0;
 
   _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  // For Fetching API Data
+  late List<ApiData>? pmData = [];
+
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    pmData = await fetchPMData();
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {
+          isLoading = false;
+        }));
   }
 
   @override
@@ -26,13 +47,15 @@ class _PMChartWidgetState extends State<PMChartWidget> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('NO2 Chart'),
       ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: const [
-          PMWeeklyChart(),
-          PMMonthlyChart()
-        ],
-      ),
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : IndexedStack(
+              index: _selectedIndex,
+              children: [
+                PMWeeklyChart(pmData: pmData!),
+                PMMonthlyChart(pmData: pmData!)
+              ],
+            ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

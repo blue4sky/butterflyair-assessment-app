@@ -3,10 +3,10 @@ import 'package:butterflyair_assessment_app/data/api_data.dart';
 import 'package:butterflyair_assessment_app/data/api_key.dart';
 
 String pmUrl =
-    'https://api.breathelondon.org/api/getClarityData/CLDP0098/IPM25/Sat 1 Apr 2023 00:00:00 GMT/Sat 1 Jul 2023 00:00:00 GMT/Hourly?key=$breatheLondonApiKey';
+    'https://api.breathelondon.org/api/getClarityData/CLDP0098/IPM25/Sat 1 Apr 2023 00:00:00 GMT/Sat 1 Jul 2023 01:00:00 GMT/Hourly?key=$breatheLondonApiKey';
 
 String no2Url =
-    'https://api.breathelondon.org/api/getClarityData/CLDP0098/INO2/Sat 1 Apr 2023 00:00:00 GMT/Sat 1 Jul 2023 00:00:00 GMT/Hourly?key=$breatheLondonApiKey';
+    'https://api.breathelondon.org/api/getClarityData/CLDP0098/INO2/Sat 1 Apr 2023 00:00:00 GMT/Sat 1 Jul 2023 01:00:00 GMT/Hourly?key=$breatheLondonApiKey';
 
 Future<List<ApiData>?> fetchPMData() async {
   final response = await http.get(Uri.parse(pmUrl));
