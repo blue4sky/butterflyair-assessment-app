@@ -3,14 +3,14 @@ import 'package:butterflyair_assessment_app/data/api_data.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class PMChartWidget extends StatefulWidget {
-  const PMChartWidget({super.key});
+class PMWeeklyChart extends StatefulWidget {
+  const PMWeeklyChart({super.key});
 
   @override
-  State<PMChartWidget> createState() => _PMChartWidgetState();
+  State<PMWeeklyChart> createState() => _PMWeeklyChartState();
 }
 
-class _PMChartWidgetState extends State<PMChartWidget> {
+class _PMWeeklyChartState extends State<PMWeeklyChart> {
   late List<ApiData>? pmData = [];
 
   @override
@@ -29,7 +29,7 @@ class _PMChartWidgetState extends State<PMChartWidget> {
     for (var i = 0; i < pmData!.length; i++) {
       pmSpotsList.add(
         FlSpot(
-          pmSpotsList.length.toDouble() / 720,
+          pmSpotsList.length.toDouble() / 732,
           pmData![i].scaledValue,
         ),
       );
@@ -41,10 +41,6 @@ class _PMChartWidgetState extends State<PMChartWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('PM2.5 Chart'),
-      ),
       body: pmData == null || pmData == []
           ? const Center(child: CircularProgressIndicator())
           : Center(
@@ -72,7 +68,7 @@ class _PMChartWidgetState extends State<PMChartWidget> {
                               spots: pmSpots,
                               isCurved: false,
                               belowBarData: BarAreaData(
-                                show: true,
+                                show: false,
                               ),
                               dotData: const FlDotData(
                                 show: false,

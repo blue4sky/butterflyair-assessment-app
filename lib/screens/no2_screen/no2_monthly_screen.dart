@@ -3,14 +3,14 @@ import 'package:butterflyair_assessment_app/data/api_data.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class NO2ChartWidget extends StatefulWidget {
-  const NO2ChartWidget({super.key});
+class NO2MonthlyChart extends StatefulWidget {
+  const NO2MonthlyChart({super.key});
 
   @override
-  State<NO2ChartWidget> createState() => _NO2ChartWidgetState();
+  State<NO2MonthlyChart> createState() => _NO2MonthlyChartState();
 }
 
-class _NO2ChartWidgetState extends State<NO2ChartWidget> {
+class _NO2MonthlyChartState extends State<NO2MonthlyChart> {
   late List<ApiData>? no2Data = [];
 
   @override
@@ -29,7 +29,7 @@ class _NO2ChartWidgetState extends State<NO2ChartWidget> {
     for (var i = 0; i < no2Data!.length; i++) {
       no2SpotsList.add(
         FlSpot(
-          no2SpotsList.length.toDouble() / 720,
+          no2SpotsList.length.toDouble() / 180,
           no2Data![i].scaledValue,
         ),
       );
@@ -41,10 +41,6 @@ class _NO2ChartWidgetState extends State<NO2ChartWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('NO2 Chart'),
-      ),
       body: no2Data == null || no2Data == []
           ? const Center(child: CircularProgressIndicator())
           : Center(
@@ -72,7 +68,7 @@ class _NO2ChartWidgetState extends State<NO2ChartWidget> {
                               spots: no2Spots,
                               isCurved: false,
                               belowBarData: BarAreaData(
-                                show: true,
+                                show: false,
                               ),
                               dotData: const FlDotData(
                                 show: false,
