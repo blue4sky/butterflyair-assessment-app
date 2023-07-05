@@ -59,11 +59,11 @@ class _PMChartWidgetState extends State<PMChartWidget> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.timeline),
+            icon: Icon(Icons.calendar_view_week),
             label: 'Weekly Chart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.timeline),
+            icon: Icon(Icons.calendar_month),
             label: 'Monthly Chart',
           ),
         ],

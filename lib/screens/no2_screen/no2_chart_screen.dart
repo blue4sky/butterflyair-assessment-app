@@ -59,11 +59,11 @@ class _NO2ChartScreenState extends State<NO2ChartScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.timeline),
+            icon: Icon(Icons.calendar_view_week),
             label: 'Weekly Chart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.timeline),
+            icon: Icon(Icons.calendar_month),
             label: 'Monthly Chart',
           ),
         ],
