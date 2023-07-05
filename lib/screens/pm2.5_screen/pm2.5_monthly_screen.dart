@@ -18,9 +18,21 @@ class _PMMonthlyChartState extends State<PMMonthlyChart> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'April - June 2023',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
           CustomLineChart(
             data: widget.pmData,
-            divisor: 727,
+            divisor: 726.5,
             maxYAxis: 35,
             isWeekly: false,
           ),

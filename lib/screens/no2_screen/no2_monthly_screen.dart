@@ -18,9 +18,21 @@ class _NO2MonthlyChartState extends State<NO2MonthlyChart> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'April - June 2023',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
           CustomLineChart(
             data: widget.no2Data,
-            divisor: 727,
+            divisor: 726.5,
             maxYAxis: 140,
             isWeekly: false,
           ),
