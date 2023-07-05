@@ -1,7 +1,7 @@
 import 'package:butterflyair_assessment_app/components/monthly_bottom_chart_title.dart';
 import 'package:butterflyair_assessment_app/components/weekly_bottom_chart_title.dart';
 import 'package:butterflyair_assessment_app/data/api_data.dart';
-import 'package:butterflyair_assessment_app/utils/spots_list.dart';
+import 'package:butterflyair_assessment_app/utils.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
