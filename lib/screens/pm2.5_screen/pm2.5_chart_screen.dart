@@ -45,7 +45,7 @@ class _PMChartWidgetState extends State<PMChartWidget> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('NO2 Chart'),
+        title: const Text('PM2.5 Chart'),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
