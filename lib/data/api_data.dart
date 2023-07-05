@@ -1,10 +1,7 @@
 import 'dart:convert';
 
-List<ApiData> pmDataFromJson(String str) =>
+List<ApiData> dataFromJson(String str) =>
     List<ApiData>.from(json.decode(str).map((x) => ApiData.fromJson(x)));
-
-String pmDataToJson(List<ApiData> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ApiData {
   final String siteCode;

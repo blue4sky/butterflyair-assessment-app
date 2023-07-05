@@ -14,7 +14,7 @@ Future<List<ApiData>?> fetchPMData() async {
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    List<ApiData> data = pmDataFromJson(response.body);
+    List<ApiData> data = dataFromJson(response.body);
     return data;
   } else {
     // If the server did not return a 200 OK response,
@@ -29,7 +29,7 @@ Future<List<ApiData>?> fetchNOData() async {
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    List<ApiData> data = pmDataFromJson(response.body);
+    List<ApiData> data = dataFromJson(response.body);
     return data;
   } else {
     // If the server did not return a 200 OK response,
